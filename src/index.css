@@ -4,11 +4,18 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #FAFAFA;
+  color: #2B2B2B;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
 form,
 label,
 main {
   display: grid;
-  gap: 0.5rem;
+  gap: .5rem;
 }
 
 #root {
@@ -20,16 +27,28 @@ main {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 0.5rem 0;
+  align-items: center;
+  margin: 0.5rem 1.5rem;
+  padding-bottom: .75rem;
+  border-bottom: 2px solid #4594CF;
+
 }
 
+header p {
+  font-weight: 700;
+  font-size: 1.50rem;
+  color: #57398A;
+
+
+}
 header nav {
   display: flex;
-  gap: 1ch;
+  gap: 1.25rem;
 }
 
 a {
   color: teal;
+  font-weight: 500;
 }
 
 a:hover {
@@ -37,11 +56,55 @@ a:hover {
   text-decoration: underline;
 }
 
+h1 {
+  margin-bottom: 2rem;
+  color: #57398A;
+}
+
+h2 {
+  margin: 1.5rem 0 .5rem;
+  color: #a587db;
+}
+
 ul,
 ol {
   padding-left: 1rem;
 }
 
+main ul li {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+button {
+  background-color: #FF9806;
+  color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 6px;
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+
+input {
+  padding: .4rem .6rem;
+  border: 1px solid #4594CF;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+
+article img {
+  margin-bottom: 1rem;
+}
+
+article button {
+  margin-top: 1rem;
+}
+
 p[role="alert"] {
-  color: red;
+  color: #C0392B;
+  background-color: #FBEAE8;
+  padding: .5rem;
+  border-radius: 4px;
 }

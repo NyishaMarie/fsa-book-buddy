@@ -48,7 +48,7 @@ export default function AccountPage() {
             <h2>Your reservations</h2>
             <ul>
                 {user.reservations.map((reservation) => (
-                    <li key={reservation.id}>
+                    <li key={reservation.id} className="reservation-item">
                         {reservation.title}
                         <button onClick={() => tryReturn(reservation.id)}>Return</button>
                     </li>
