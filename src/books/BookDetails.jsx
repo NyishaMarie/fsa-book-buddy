@@ -10,6 +10,7 @@ export default function BookDetails() {
   
     const [book, setBook] = useState(null);
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(false);
 
 const syncBook = async () => {
     const data = await getBook(id);
@@ -22,10 +23,12 @@ useEffect (() => {
 
 const tryReserve = async () => {
     setError(null);
+    setSuccess(false);
 
     try {
         await reserveBook(token, book.id);
-        syncBook();
+        await syncBook();
+        setSuccess(true);
     } catch (e) {
         setError(e.message);
     }
@@ -43,6 +46,7 @@ return (
             <button onClick={tryReserve}>Reserve</button>
         )}
         {error && <p role="alert">{error}</p>}
+        {success && <p><strong>Book reserved successfully!</strong></p>}
     </article>
     );
 }
