@@ -7,35 +7,40 @@ const API = import.meta.env.VITE_API;
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-const [token, setToken] = useState();
+const [token, setToken] = useState(sessionStorage.getItem("token"));
 
 const register = async (credentials) => {
-const response = await fetch(API + "/users/register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials),
+    const response = await fetch(API + "/users/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
     });
     const result = await response.json();
     if (!response.ok) {
         throw Error(result.message);
     }
     setToken(result.token);
-  };
-
-const login = async (credentials) => {
-const response = await fetch(API + "/users/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials),
-    });
-    const result = await response.json();
-    if (!response.ok) {
-        throw Error(result.message);
-    }
-    setToken(result.token);
+    sessionStorage.setItem("token", result.token);
 };
 
-const logout = () => setToken(null);
+const login = async (credentials) => {
+    const response = await fetch(API + "/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+    });
+    const result = await response.json();
+    if (!response.ok) {
+        throw Error(result.message);
+    }
+    setToken(result.token);
+    sessionStorage.setItem("token", result.token);
+};
+
+const logout = () => {
+    setToken(null);
+    sessionStorage.removeItem("token");
+};
 
 
 const getMe = async () => {
