@@ -50,7 +50,7 @@ const getMe = async () => {
 };
 
 
-const value = { token, register, login, logout };
+const value = { token, register, login, logout, getMe };
 return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
